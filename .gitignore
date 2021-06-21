@@ -130,3 +130,19 @@ dmypy.json
 
 ./br-codes-venv
 ./.idea
+/.idea/.gitignore
+/br-codes-venv/Scripts/activate
+/br-codes-venv/Scripts/activate.bat
+/br-codes-venv/Scripts/Activate.ps1
+/br-codes-venv/Scripts/deactivate.bat
+/.idea/misc.xml
+/.idea/modules.xml
+/br-codes-venv/Scripts/pip.exe
+/br-codes-venv/Scripts/pip3.9.exe
+/br-codes-venv/Scripts/pip3.exe
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/py-breaking-codes.iml
+/br-codes-venv/Scripts/python.exe
+/br-codes-venv/Scripts/pythonw.exe
+/br-codes-venv/pyvenv.cfg
+/.idea/vcs.xml
