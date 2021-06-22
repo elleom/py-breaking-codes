@@ -64,7 +64,7 @@ if __name__ == '__main__':
                                          01_caesar_cypher.py -e encrypt [message] => default = decrypt'''))
         parser.add_argument('-e', '--encrypt', action='store_true',  help='Encrypts the given message')
         parser.add_argument('-k', '--key', help='Transmuting key use to encrypt/decrypt')
-        parser.add_argument('-m', '--message', help='Message to be encrypted/decrypted' )
+        parser.add_argument('-m', '--message', help='Message to be encrypted/decrypted => ex: " this is a message" ' )
         user_input = parser.parse_args()
         processor = MessageProcessor(user_input)
         processor.run()
