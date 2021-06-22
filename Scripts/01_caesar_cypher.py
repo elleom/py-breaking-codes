@@ -13,44 +13,62 @@ class MessageProcessor:
         self.args = args
 
     def process_message(self):
-        decrypted_message = ''
+        message = ''
         for symbol in self.args.message:
             # Note: only symbols within SYMBOLS const can be traced
             if symbol in self.SYMBOLS:
                 symbol_index = self.SYMBOLS.find(symbol)
 
                 # performs encrypt/decrypt
+                if self.args.encrypt:
+                    encrypted_index = symbol_index + self.args.key
+                else:
+                    encrypted_index = symbol_index - self.args.key
+
+                # handle rollover if needed
+                if encrypted_index >= len(self.SYMBOLS):
+                    encrypted_index = encrypted_index - len(self.SYMBOLS)
+                elif encrypted_index < 0:
+                    encrypted_index = encrypted_index + len(self.SYMBOLS)
+
+                message = message + self.SYMBOLS[encrypted_index]
+            else:
+                # message symbol without enc/dec
+                message = message + symbol
+        return message
 
     def run(self):
+        self.get_user_input()
+        processed_message = self.process_message()
+        self.print_message(processed_message)
+
+    def get_user_input(self):
         if not self.args.key:
             self.args.key = int(input('[*] Key not specified, please provide key>'))
-        elif not self.args.message:
-            self.args.message = int(input('[*] Message not specified, please provide message>'))
-        self.process_message()
+        # transforms string args to int for processing
+        self.args.key = int(self.args.key)
+        if not self.args.message:
+            self.args.message = input('[*] Message not specified, please provide message>')
 
-
-def get_user_input():
-    encrypted_message = input('[+] Introduce encrypted message>')
-    while True:
-        try:
-            message_key = int(input('[+] Introduce the key'))
-            break
-        except ValueError:
-            print('Introduce a number, please')
+    def print_message(self, message):
+        print(message)
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='CAESAR CYPHER TOOL',
-                                     # Help Message Formatter
-                                     # which retains any formatting in description
-                                     formatter_class=argparse.RawTextHelpFormatter,
-                                     epilog=textwrap.dedent('''Example;
-                                     01_caesar_cypher.py -e encrypt [message] \ndefault = decrypt'''))
-    parser.add_argument('-e', '--encrypt', action='store_true',  help='Encrypts the given message')
-    parser.add_argument('-k', '--key', help='Transmuting key use to encrypt/decrypt')
-    parser.add_argument('-m', '--message', help='Message to be encrypted/decrypted' )
-    user_input = parser.parse_args()
-    processor = MessageProcessor(user_input)
-    processor.run()
+    try:
+        parser = argparse.ArgumentParser(description='CAESAR CYPHER TOOL',
+                                         # Help Message Formatter
+                                         # which retains any formatting in description
+                                         formatter_class=argparse.RawTextHelpFormatter,
+                                         epilog=textwrap.dedent('''Example;
+                                         01_caesar_cypher.py -e encrypt [message] => default = decrypt'''))
+        parser.add_argument('-e', '--encrypt', action='store_true',  help='Encrypts the given message')
+        parser.add_argument('-k', '--key', help='Transmuting key use to encrypt/decrypt')
+        parser.add_argument('-m', '--message', help='Message to be encrypted/decrypted' )
+        user_input = parser.parse_args()
+        processor = MessageProcessor(user_input)
+        processor.run()
+    except KeyboardInterrupt:
+        print('[-] Program quited\n')
 
 
