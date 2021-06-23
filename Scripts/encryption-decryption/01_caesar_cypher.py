@@ -2,8 +2,8 @@
 
 # Caesar Cypher
 import textwrap
-import paperclip
 import argparse
+import paperclip
 
 
 class MessageProcessor:
