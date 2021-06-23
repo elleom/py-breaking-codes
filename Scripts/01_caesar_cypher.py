@@ -40,7 +40,9 @@ class MessageProcessor:
     def run(self):
         self.get_user_input()
         processed_message = self.process_message()
+        paperclip.copy(processed_message) # adds result to clipboard
         self.print_message(processed_message)
+
 
     def get_user_input(self):
         try:
