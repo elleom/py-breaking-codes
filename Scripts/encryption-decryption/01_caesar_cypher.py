@@ -43,7 +43,6 @@ class MessageProcessor:
         paperclip.copy(processed_message) # adds result to clipboard
         self.print_message(processed_message)
 
-
     def get_user_input(self):
         try:
             if not self.args.key:
