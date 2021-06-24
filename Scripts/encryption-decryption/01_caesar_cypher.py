@@ -64,7 +64,8 @@ if __name__ == '__main__':
                                      # which retains any formatting in description
                                      formatter_class=argparse.RawTextHelpFormatter,
                                      epilog=textwrap.dedent('''Example;
-                                                 01_caesar_cypher.py -e encrypt [message] => default = decrypt'''))
+    python 01_caesar_cypher.py -e encrypt -m " [message] " => defaultMode = decrypt'''))
+
     parser.add_argument('-e', '--encrypt', action='store_true', help='Encrypts the given message')
     parser.add_argument('-k', '--key', help='Transmuting key use to encrypt/decrypt')
     parser.add_argument('-m', '--message', help='Message to be encrypted/decrypted => ex: " this is a message" ')
