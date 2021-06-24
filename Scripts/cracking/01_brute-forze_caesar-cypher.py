@@ -11,7 +11,21 @@ class MessageProcessor:
         self.args = args
 
     def process_message(self):
-        print('proccess message')
+        for key in range(len(self.SYMBOLS)):
+            translated_message = ''  # blanks the message after each iteration
+            for symbol in self.args.message:
+                if symbol in self.SYMBOLS:
+                    symbol_index = self.SYMBOLS.find(symbol)
+                    translated_index = symbol_index - key
+
+                    #  handle wraparound
+                    if translated_index < 0:
+                        translated_index = translated_index + len(self.SYMBOLS)
+                    # append symbol
+                    translated_message += self.SYMBOLS[translated_index]
+                else:
+                    # append raw symbol => symbol not in self.SYMBOLS
+                    translated_message += symbol
 
     def get_user_input(self):
         if not self.args.message:
