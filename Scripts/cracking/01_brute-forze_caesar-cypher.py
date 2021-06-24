@@ -26,6 +26,7 @@ class MessageProcessor:
                 else:
                     # append raw symbol => symbol not in self.SYMBOLS
                     translated_message += symbol
+            print('Key #%s: %s' % (key, translated_message))
 
     def get_user_input(self):
         if not self.args.message:
