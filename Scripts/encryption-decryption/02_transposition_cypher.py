@@ -14,3 +14,4 @@
 # Starting from the top left and going down each column, write out the
 # characters. When you get to the bottom of a column, move to the next
 # column to the right. Skip any shaded boxes. This will be the ciphertext.
+
