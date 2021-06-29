@@ -14,4 +14,25 @@
 # Starting from the top left and going down each column, write out the
 # characters. When you get to the bottom of a column, move to the next
 # column to the right. Skip any shaded boxes. This will be the ciphertext.
+import argparse
+import textwrap
 
+
+def main():
+    arguments = parse_arguments()
+
+
+def parse_arguments():
+    parser = argparse.ArgumentParser(description="TRANSPOSITION CYPHER TOOL",
+                                     formatter_class=argparse.RawTextHelpFormatter,
+                                     epilog=textwrap.dedent("""Example:
+        python 02_transposition_cypher [--encrypt] --message "MESSAGE" --key 8
+        NOTE => default mode is decrypt"""))
+    parser.add_argument("-m", "--message", help="Message to be encrypted/decrypted")
+    parser.add_argument("-e", "--encrypt", action="store_true", help="=> tool's defaultMode = decrypt")
+    parser.add_argument("-k", "--key", help="Key for the transposition")
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    main()
