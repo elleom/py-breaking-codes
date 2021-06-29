@@ -20,19 +20,29 @@ import textwrap
 
 def main():
     arguments = parse_arguments()
-    process_data(arguments)
+    arguments = check_arguments(arguments)
 
 
-def process_data(arguments):
+def check_arguments(arguments):
+    # if mode not specified then false
     mode = arguments.encrypt
-    message = arguments.message
-    key = arguments.key
 
-    print(key, message, mode)
+    # checks for the message within the call to the script, if not then prompts
+    if not arguments.message:
+        message = input('[-] Message not found, please introduce the message to encrypt/decrypt\n>')
+    message = arguments.message
+
+    # check for a key, if not then prompts
+    if not arguments.key:
+        key = int(input("[-] Introduce the key integer\n"))
+    key = int(arguments.key)
+    return mode, message, key
 
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="TRANSPOSITION CYPHER TOOL",
+                                     # Help Message Formatter
+                                     # which retains any formatting in description
                                      formatter_class=argparse.RawTextHelpFormatter,
                                      epilog=textwrap.dedent("""Example:
         python 02_transposition_cypher [--encrypt] --message "MESSAGE" --key 8
