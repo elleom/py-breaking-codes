@@ -20,6 +20,15 @@ import textwrap
 
 def main():
     arguments = parse_arguments()
+    process_data(arguments)
+
+
+def process_data(arguments):
+    mode = arguments.encrypt
+    message = arguments.message
+    key = arguments.key
+
+    print(key, message, mode)
 
 
 def parse_arguments():
