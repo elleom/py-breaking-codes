@@ -21,6 +21,7 @@ import textwrap
 def main():
     arguments = parse_arguments()
     arguments = check_arguments(arguments)
+    process_message(arguments.message, arguments.key, arguments.mode)
 
 
 def check_arguments(arguments):
@@ -37,6 +38,10 @@ def check_arguments(arguments):
         key = int(input("[-] Introduce the key integer\n"))
     key = int(arguments.key)
     return mode, message, key
+
+
+def process_message(message, key, mode):
+    print(message, key, mode)
 
 
 def parse_arguments():
