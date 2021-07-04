@@ -26,18 +26,21 @@ def main():
 
 
 def check_arguments(arguments):
-    # if mode not specified then false
-    mode = arguments.encrypt
-
     # checks for the message within the call to the script, if not then prompts
     if not arguments.message:
         message = input('[-] Message not found, please introduce the message to encrypt/decrypt\n>')
-    arguments.message = message
+    else:
+        message = arguments.message
 
     # check for a key, if not then prompts
     if not arguments.key:
         key = int(input("[-] Introduce the key integer\n"))
-    arguments.key = key
+    else:
+        key = int(arguments.key)
+
+    # if mode not specified then false
+    mode = arguments.encrypt
+
     # packs a tuple
     return mode, message, key
 
@@ -73,6 +76,7 @@ def encrypt_message(message, key):
 
 
 def decrypt_message(message, key):
+    return None
 
 
 def parse_arguments():
