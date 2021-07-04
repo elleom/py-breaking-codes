@@ -42,17 +42,37 @@ def check_arguments(arguments):
     return mode, message, key
 
 
-def process_message(mode, message, key):
+def process_message(encrypt, message, key):  # encrypt refers to encrypt/decrypt mode
     processed_message = ''
-    print(message, key, mode)
+
+    if encrypt:
+        processed_message = encrypt_message(message, key)
+    else:
+        processed_message = decrypt_message(message, key)
 
     return processed_message
 
-def encryptMessage(message, key):
+
+def encrypt_message(message, key):
+    ciphertext = [''] * key  # creates n (n = to key/columns) amount of list elements
+
+    for column in range(key):
+        current_index = column
+
+        # keep looking until current_index goes past the message length
+        while current_index < len(message):
+            # place the char at current_index in message at the end of
+            # the current column in the ciphertext list
+            ciphertext[column] += message[current_index]
+
+            # move current index n (key) amount of spaces
+            current_index += key
+
+            # convert ciphertext list into a single string and return
+    return ''.join(ciphertext)
 
 
-def decryptMessage(message, key):
-
+def decrypt_message(message, key):
 
 
 def parse_arguments():
