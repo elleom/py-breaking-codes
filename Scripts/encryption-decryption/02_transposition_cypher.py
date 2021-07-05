@@ -15,6 +15,7 @@
 # characters. When you get to the bottom of a column, move to the next
 # column to the right. Skip any shaded boxes. This will be the ciphertext.
 import argparse
+import math
 import textwrap
 
 
@@ -76,7 +77,16 @@ def encrypt_message(message, key):
 
 
 def decrypt_message(message, key):
-    return None
+    # The decrypt func simulates columns and rows of the grid the plain text is written on by using a list of strings,
+
+    # number of columns in the transposition grid
+    num_columns = int(math.ceil(len(message)) / float(key))
+    num_rows = key
+    num_shaded_boxes = (num_columns * num_rows) - len(message)
+
+    plaintext = [''] * num_columns
+
+    return ''.join(plaintext)
 
 
 def parse_arguments():
