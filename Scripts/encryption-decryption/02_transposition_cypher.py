@@ -85,6 +85,12 @@ def decrypt_message(message, key):
     num_shaded_boxes = (num_columns * num_rows) - len(message)
 
     plaintext = [''] * num_columns
+    row = 0
+    column = 0
+
+    for symbol in message:
+        plaintext[column] += symbol
+        column += 1  # points to next column
 
     return ''.join(plaintext)
 
