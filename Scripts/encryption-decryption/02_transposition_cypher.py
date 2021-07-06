@@ -73,6 +73,7 @@ def encrypt_message(message, key):
             current_index += key
 
             # convert ciphertext list into a single string and return
+
     return ''.join(ciphertext)
 
 
@@ -91,6 +92,13 @@ def decrypt_message(message, key):
     for symbol in message:
         plaintext[column] += symbol
         column += 1  # points to next column
+
+        # if there s no more symbols or we are at a shadow box then go back to first column
+        # and the next row
+        if (column == num_columns) or (column == num_columns -1
+                                       and row >= num_rows - num_shaded_boxes):
+            column = 0
+            row += 1
 
     return ''.join(plaintext)
 
