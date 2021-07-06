@@ -81,7 +81,7 @@ def decrypt_message(message, key):
     # The decrypt func simulates columns and rows of the grid the plain text is written on by using a list of strings,
 
     # number of columns in the transposition grid
-    num_columns = int(math.ceil(len(message)) / float(key))
+    num_columns = int(math.ceil(len(message) / float(key)))
     num_rows = key
     num_shaded_boxes = (num_columns * num_rows) - len(message)
 
@@ -95,7 +95,7 @@ def decrypt_message(message, key):
 
         # if there s no more symbols or we are at a shadow box then go back to first column
         # and the next row
-        if (column == num_columns) or (column == num_columns -1
+        if (column == num_columns) or (column == num_columns - 1
                                        and row >= num_rows - num_shaded_boxes):
             column = 0
             row += 1
