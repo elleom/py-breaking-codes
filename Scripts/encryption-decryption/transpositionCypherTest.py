@@ -23,11 +23,19 @@ def main():
         random.shuffle(message)
         message = ''.join(message)  # converts back to string
 
-        print('Test #%s: "%s..."' % (i + 1, message[:50]))
+        print('[*] Test #%s: "%s..."' % (i + 1, message[:50]))
 
         for key in range(1, int(len(message)/2)):
-            encrypted_message = encrypt(message, key)
-            decrypted_message = decrypt(encrypted_message, key)
+            encrypted_message = encrypt(message, key)  # generates ciphertext
+            decrypted_message = decrypt(encrypted_message, key)  # generates plaintext
+
+            if decrypted_message != message:
+                print('[!] Mismatch with key %s and message %s.' % (key, message))
+                print('[!] Decrypted as %s' % decrypted_message)
+                print('[!] Failed, exiting...')
+                sys.exit()
+
+    print('[+] All test passed')
 
 
 if __name__ == '__main__':
