@@ -25,6 +25,10 @@ def main():
 
         print('Test #%s: "%s..."' % (i + 1, message[:50]))
 
+        for key in range(1, int(len(message)/2)):
+            encrypted_message = encrypt(message, key)
+            decrypted_message = decrypt(encrypted_message, key)
+
 
 if __name__ == '__main__':
     main()
