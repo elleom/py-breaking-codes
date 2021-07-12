@@ -10,7 +10,14 @@ from transpositionCypher import encrypt_message as encrypt
 
 
 def main():
-    parse_args()
+    arguments = parse_args()
+    run(arguments)
+
+
+def run(arguments):
+    if not arguments.key:
+        print('Key not specified, please provide. --help for usage guide')
+        sys.exit()
 
 
 def parse_args():
