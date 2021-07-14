@@ -13,6 +13,15 @@ def main():
 
     arguments = parse_args()
 
+    if not arguments.file:
+        print('[!] Input File not provided')
+        print('[!] Closing... run --help for instructions')
+        sys.exit()
+    if not arguments.key:
+        print('[!] Key not provided')
+        print('[!] Closing... run --help for instructions')
+        sys.exit()
+
     print('[*] Starting process', end='', flush=True)
     time.sleep(1)
     for symbol in '...':
@@ -32,15 +41,6 @@ def main():
 
 def run(arguments):
     output_file_path = ''
-
-    if not arguments.file:
-        print('[!] Input File not provided')
-        print('[!] Closing... run --help for instructions')
-        sys.exit()
-    if not arguments.key:
-        print('[!] Key not provided')
-        print('[!] Closing... run --help for instructions')
-        sys.exit()
 
     # create output file
     input_file_path = arguments.file
@@ -74,10 +74,10 @@ def parse_args():
                                      epilog=textwrap.dedent("""Example:
         python transpositionCypherFile [--encrypt] --file "/path/to/file" --output-file "/path/to/file"  --key 8
         NOTE => default mode is decrypt"""))
-    parser.add_argument('-f', '--file', help='Text file to be encrypted/decrypted')
+    parser.add_argument('-f', '--file', required=True, help='Text file to be encrypted/decrypted')
     parser.add_argument('-e', '--encrypt', action='store_true', help='Default mode is decrypt')
-    parser.add_argument('-k', '--key', help='Message Key for encrypt/decrypt')
-    parser.add_argument('-o', '--output', help='Output file path or filename [OPTIONAL]')
+    parser.add_argument('-k', '--key', required=True, help='Message Key for encrypt/decrypt')
+    parser.add_argument('-o', '--output', help='Output file path or filename')
     return parser.parse_args()
 
 
