@@ -37,6 +37,10 @@ def run(arguments):
         print('[!] Input File not provided')
         print('[!] Closing... run --help for instructions')
         sys.exit()
+    if not arguments.key:
+        print('[!] Key not provided')
+        print('[!] Closing... run --help for instructions')
+        sys.exit()
 
     # create output file
     input_file_path = arguments.file
@@ -47,7 +51,20 @@ def run(arguments):
     else:
         output_file_path = arguments.output
 
+    # call process procedure
+    process_file(input_file_path, output_file_path, arguments.encrypt, arguments.key)
+
+
 def process_file(input_file, output_file, do_encrypt, key):
+    if not os.path.exists(input_file):
+        print('[!] Input file %s not found . Quitting' % input_file)
+        sys.exit()
+    if os.path.exists(output_file):
+        print('[!] Output file %s already exists, this will overwrite it' % output_file)
+        response = input('[?] (C)ontinue or (Q)uit?\n>')
+        if not response.lower().startswith('c'):
+            sys.exit()
+
 
 
 
@@ -60,7 +77,7 @@ def parse_args():
     parser.add_argument('-f', '--file', help='Text file to be encrypted/decrypted')
     parser.add_argument('-e', '--encrypt', action='store_true', help='Default mode is decrypt')
     parser.add_argument('-k', '--key', help='Message Key for encrypt/decrypt')
-    parser.add_argument('-o', '--output', help='Output file path or filename')
+    parser.add_argument('-o', '--output', help='Output file path or filename [OPTIONAL]')
     return parser.parse_args()
 
 
