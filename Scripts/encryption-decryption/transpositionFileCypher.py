@@ -65,7 +65,11 @@ def process_file(input_file, output_file, do_encrypt, key):
         if not response.lower().startswith('c'):
             sys.exit()
 
-    # todo continue process_file
+    # read in the message from input file
+    file_object = open(input_file)
+    file_content = file_object.read()
+    file_object.close()
+    print(file_content)
 
 
 def parse_args():
