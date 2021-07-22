@@ -23,14 +23,14 @@ def main():
         sys.exit()
 
     print('[*] Starting process', end='', flush=True)
-    time.sleep(1)
+    time.sleep(0.5)
     for symbol in '...':
         print(symbol, end='', flush=True)
-        time.sleep(1)
+        time.sleep(0.5)
     print('\n[*] Parsing arguments', end='', flush=True)
     for symbol in '...':
         print(symbol, end='', flush=True)
-        time.sleep(1)
+        time.sleep(0.5)
     print('\n[*] Adding some more drama to the script', end='', flush=True)
     for symbol in '...':
         print(symbol, end='', flush=True)
@@ -57,10 +57,10 @@ def run(arguments):
 
 def process_file(input_file, output_file, do_encrypt, key):
     if not os.path.exists(input_file):
-        print('[!] Input file %s not found . Quitting' % input_file)
+        print('\n[!] Input file %s not found . Quitting' % input_file)
         sys.exit()
     if os.path.exists(output_file):
-        print('[!] Output file %s already exists, this will overwrite it' % output_file)
+        print('\n[!] Output file %s already exists, this will overwrite it' % output_file)
         response = input('[?] (C)ontinue or (Q)uit?\n>')
         if not response.lower().startswith('c'):
             sys.exit()
@@ -69,8 +69,6 @@ def process_file(input_file, output_file, do_encrypt, key):
     file_object = open(input_file)
     file_content = file_object.read()
     file_object.close()
-
-
 
 
 def parse_args():
