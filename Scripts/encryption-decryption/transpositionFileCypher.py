@@ -66,9 +66,23 @@ def process_file(input_file, output_file, do_encrypt, key):
             sys.exit()
 
     # read in the message from input file
-    file_object = open(input_file)
-    file_content = file_object.read()
-    file_object.close()
+    input_file_object = open(input_file)
+    file_content = input_file_object.read()
+    input_file_object.close()
+
+    output_file_content = open(output_file, 'w')
+
+    if do_encrypt:
+        encrypted_content = encrypt(file_content, int(key))
+        print("\n\n[*] Printing encrypted content...\n")
+        print(encrypted_content)
+        output_file_content.write(encrypted_content)
+
+    elif not do_encrypt:
+        decrypted_content = decrypt(file_content, int(key))
+        print("\n\n[*] Printing decrypted content...\n")
+        print(decrypted_content)
+        output_file_content.write(decrypted_content)
 
 
 def parse_args():
