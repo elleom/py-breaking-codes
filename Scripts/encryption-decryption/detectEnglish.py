@@ -23,3 +23,13 @@ def load_dictionary():
 DICTIONARY_WORDS = load_dictionary()
 
 
+def remove_non_letters(message):
+    return ''
+
+
+def get_dictionary_count(message):
+    message = message.upper()
+    message = remove_non_letters(message)
+    possible_words = message.split()
+
+
