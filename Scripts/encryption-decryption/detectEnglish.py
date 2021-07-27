@@ -24,7 +24,11 @@ DICTIONARY_WORDS = load_dictionary()
 
 
 def remove_non_letters(message):
-    return ''
+    letters_only = []
+    for symbol in message:
+        if symbol in LETTERS_AND_SPACE:
+            letters_only.append(symbol)
+    return ''.join(letters_only)
 
 
 def get_dictionary_count(message):
