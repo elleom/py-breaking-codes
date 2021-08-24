@@ -109,7 +109,7 @@ def parse_arguments():
                                      # which retains any formatting in description
                                      formatter_class=argparse.RawTextHelpFormatter,
                                      epilog=textwrap.dedent("""Example:
-        python 02_transposition_cypher [--encrypt] --message "MESSAGE" --key 8
+        python transpositionCypher [--encrypt] --message "MESSAGE" --key 8
         NOTE => default mode is decrypt"""))
     parser.add_argument("-m", "--message", help="Message to be encrypted/decrypted")
     parser.add_argument("-e", "--encrypt", action="store_true", help="=> tool's defaultMode = decrypt")
