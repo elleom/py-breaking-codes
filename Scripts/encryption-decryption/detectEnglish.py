@@ -33,6 +33,8 @@ def remove_non_letters(message):
 
 
 def get_dictionary_count(message):
+    f = open(message, "r")
+    message = f.read()
     message = message.upper()
     message = remove_non_letters(message)
     possible_words = message.split()
@@ -45,11 +47,13 @@ def parse_arguments():
                                      formatter_class=argparse.RawTextHelpFormatter,
                                      epilog=textwrap.dedent("""Example:
         python detectEnglish --file "path" """))
+    parser.add_argument("-f", "--file", dest="file_path", help="Encrypted document path")
     return parser.parse_args()
 
 
 def main():
     arguments = parse_arguments()
+    get_dictionary_count(arguments.file_path)
 
 
 
