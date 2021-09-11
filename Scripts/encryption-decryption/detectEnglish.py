@@ -45,9 +45,13 @@ def parse_arguments():
                                      formatter_class=argparse.RawTextHelpFormatter,
                                      epilog=textwrap.dedent("""Example:
         python detectEnglish --file "path" """))
+    return parser.parse_args()
+
 
 def main():
-    pass
+    arguments = parse_arguments()
+
+
 
 if __name__ == "__main__":
     main()
