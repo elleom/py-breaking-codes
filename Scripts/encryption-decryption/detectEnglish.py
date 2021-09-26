@@ -12,8 +12,8 @@ UPPER_LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 LETTERS_AND_SPACE = UPPER_LETTERS + UPPER_LETTERS.lower() + ' \t\n'
 
 
-def load_dictionary():
-    dictionary_file = open('../assets/words.txt')
+def load_dictionary(file_path):
+    dictionary_file = open(file_path)
     dictionary_words = {}  # creates a dictionary to store the key value pairs
     for word in dictionary_file.read().split('\n'):  # each lines finishes with \n on the word file
         dictionary_words[word] = None
@@ -38,6 +38,7 @@ def get_dictionary_count(message):
     message = message.upper()
     message = remove_non_letters(message)
     possible_words = message.split()
+    return possible_words
 
 
 def parse_arguments():
@@ -47,14 +48,15 @@ def parse_arguments():
                                      formatter_class=argparse.RawTextHelpFormatter,
                                      epilog=textwrap.dedent("""Example:
         python detectEnglish --file "path" """))
-    parser.add_argument("-f", "--file", dest="file_path", help="Encrypted document path")
+    parser.add_argument("-f", "--file", dest="file", help="Encrypted document path")
+    parser.add_argument("-d", "--dictionary", dest="dictionary_file", help="dictionary_file")
     return parser.parse_args()
 
 
 def main():
     arguments = parse_arguments()
-    get_dictionary_count(arguments.file_path)
-
+    dictionary = load_dictionary(arguments.file_path)
+    message = get_dictionary_count(arguments.file)
 
 
 if __name__ == "__main__":
