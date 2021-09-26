@@ -38,6 +38,16 @@ def get_dictionary_count(message):
     message = message.upper()
     message = remove_non_letters(message)
     possible_words = message.split()
+
+    if not possible_words:
+        return 0  # No words return 0
+
+    matches = 0
+    for word in possible_words:
+        if word in DICTIONARY_WORDS:
+            matches += 1
+    return float(matches) / len(possible_words)
+
     return possible_words
 
 
